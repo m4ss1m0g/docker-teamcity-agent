@@ -6,13 +6,13 @@ USER root
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # Install NVM
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update
 
 ENV NVM_DIR /root/.nvm
-ENV NODE_VERSION v10.19.0
+ENV NODE_VERSION v12.13.0
 
 RUN source $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION 
@@ -26,5 +26,5 @@ COPY ./update-link.sh /root/.nvm/
 RUN chmod +x /root/.nvm/update-link.sh
 #RUN /root/.nvm/update-link.sh
 
-RUN ln -s /root/.nvm/versions/node/v10.19.0/bin/node /usr/bin/node
-RUN ln -s /root/.nvm/versions/node/v10.19.0/bin/npm /usr/bin/npm
+RUN ln -s /root/.nvm/versions/node/v12.13.0/bin/node /usr/bin/node
+RUN ln -s /root/.nvm/versions/node/v12.13.0/bin/npm /usr/bin/npm
